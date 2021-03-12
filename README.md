@@ -55,7 +55,7 @@
 | sipping_area_id | integer    | null: false       |
 | city            | string     | null: false       |
 | house_number    | string     | null: false       |
-| bulling         | string     |                   |
+| building        | string     |                   |
 | phone_number    | string     | null: false       |
 | order           | references | foreign_key: true |
 

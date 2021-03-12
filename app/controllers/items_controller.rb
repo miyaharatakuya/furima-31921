@@ -2,7 +2,8 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit, :destroy]
   before_action :item_find, only: [:show, :edit, :update, :destroy]
   before_action :item_redirect, only: [:edit, :update, :destroy]
-
+  before_action :sold_out, only: [:edit]
+  
   def new
     @item = Item.new
   end
@@ -52,5 +53,9 @@ class ItemsController < ApplicationController
 
   def item_redirect
     redirect_to action: :index unless @item.user_id == current_user.id
+  end
+
+  def sold_out
+    redirect_to root_path if Order.exists?(item_id: @item.id)
   end
 end
